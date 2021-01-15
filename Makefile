@@ -10,7 +10,8 @@ clean:
 	rm -f $(PROG)
 
 install:
-	install -g 0 -o 0 $(PROG) /usr/bin/
+	install -D -m 755 $(PROG) /usr/bin/
+	install -D -m 624 gnotepad.desktop /usr/share/applications/
 
 uninstall:
 	rm -f /usr/bin/$(PROG)
