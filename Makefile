@@ -1,5 +1,5 @@
 CFLAGS+=-Wall -Wextra
-CFLAGS+=`pkg-config --cflags gtk+-3.0` -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DGSEAL_ENABLE
+CFLAGS+=`pkg-config --cflags gtk+-3.0`
 LIBS+=`pkg-config --libs gtk+-3.0`
 PROG=gnotepad
 

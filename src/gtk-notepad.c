@@ -149,36 +149,6 @@ void gtk_text_view_toggle_wrapping(void) {
                                 mode);
 }
 
-/*
-void gtk_notepad_select_font(void) {
-    GtkResponseType result;
-
-    GtkWidget *dialog = gtk_font_chooser_dialog_new("Select a font", NULL);
-
-    result = gtk_dialog_run(GTK_DIALOG(dialog));
-
-    if (result == GTK_RESPONSE_OK || result == GTK_RESPONSE_APPLY) {
-        PangoFontDescription *font_desc;
-        char *fontname = gtk_font_selection_dialog_get_font_name(
-            GTK_FONT_SELECTION_DIALOG(dialog));
-
-        font_desc = pango_font_description_from_string(fontname);
-
-        gtk_widget_modify_font(textarea, font_desc);
-
-        g_free(fontname);
-    }
-
-    gtk_widget_destroy(dialog);
-}
-*/
-
-void gtk_notepad_select_font(void) {
-    GtkWidget * dialog = gtk_font_chooser_dialog_new(NULL, NULL);
-
-    gtk_widget_destroy(dialog);
-}
-
 void gtk_statusbar_update_lncol(void) {
     char *msg;
     int row, col;
@@ -408,7 +378,6 @@ void setup_menubar(void) {
     time_date = gtk_menu_item_new_with_mnemonic("_Time/Date");
     wll  = gtk_check_menu_item_new_with_mnemonic("_Wrap long "
                                                  "lines");
-    select_font = gtk_menu_item_new_with_mnemonic("_Font...");
 
     helpmenu = gtk_menu_new();
     help = gtk_menu_item_new_with_mnemonic("_Help");
@@ -435,7 +404,6 @@ void setup_menubar(void) {
     gtk_menu_shell_append(GTK_MENU_SHELL(editmenu),
                             gtk_separator_menu_item_new());
     gtk_menu_shell_append(GTK_MENU_SHELL(editmenu), wll);
-    gtk_menu_shell_append(GTK_MENU_SHELL(editmenu), select_font);
 
     gtk_menu_item_set_submenu(GTK_MENU_ITEM(help), helpmenu);
     gtk_menu_shell_append(GTK_MENU_SHELL(helpmenu), about);
@@ -525,9 +493,6 @@ void setup_menubar(void) {
     g_signal_connect(wll, "activate",
                              (GCallback)
                              gtk_text_view_toggle_wrapping, NULL);
-    g_signal_connect(select_font, "activate",
-                             (GCallback)
-                             gtk_notepad_select_font, NULL);
 
     // Help menu
     g_signal_connect(about, "activate",
@@ -610,7 +575,7 @@ int main(int argc, char* argv[]) {
     gtk_window_set_position(gwindow, GTK_WIN_POS_CENTER);
     //gtk_window_set_icon(gwindow, create_pixbuf(icon));
 
-    vbox = gtk_box_new(FALSE, 1);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(window), vbox);
 
     accel = gtk_accel_group_new();

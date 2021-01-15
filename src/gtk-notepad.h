@@ -3,8 +3,8 @@
 #define NO_FILE_LOADED (loaded_fn[0] == '\0')
 
 char *PROGNAME;
-char *title = "Untitled - GTK Notepad";
-char *icon  = "gtk-notepad.png";
+char *title = "gnotepad";
+char *icon  = "gnotepad.png";
 char *loaded_fn = NULL;
 int errno;
 
@@ -28,7 +28,7 @@ GtkWidget *new, *open, *save, *saveas, *quit;
 GtkWidget *editmenu, *edit;
 GtkWidget *cut, *copy, *paste, *delete;
 GtkWidget *selectall, *time_date;
-GtkWidget *wll, *select_font;
+GtkWidget *wll;
 
 // Help menu
 GtkWidget *helpmenu, *help;
