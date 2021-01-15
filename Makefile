@@ -8,3 +8,9 @@ build:
 
 clean:
 	rm -f $(PROG)
+
+install:
+	install -g 0 -o 0 $(PROG) /usr/bin/
+
+uninstall:
+	rm -f /usr/bin/$(PROG)
